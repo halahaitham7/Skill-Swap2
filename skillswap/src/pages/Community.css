@@ -1,0 +1,45 @@
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: var(--s-5) 0;
+  border-top: 1px solid var(--line);
+}
+.post h2 {
+  font-size: 20px;
+}
+.post-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+}
+.like-btn[aria-pressed='true'] {
+  background: var(--butter);
+  text-decoration: none;
+}
+.replies {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: var(--s-4);
+  border-radius: var(--radius);
+  background: var(--teal-tint);
+}
+.composer-box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: var(--s-5);
+  border: 1.5px solid var(--teal);
+  border-radius: var(--radius);
+}
+.side-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.side-list li {
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}

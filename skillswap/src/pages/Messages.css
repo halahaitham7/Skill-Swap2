@@ -1,0 +1,297 @@
+.chat {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr) 280px;
+  gap: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  height: calc(100vh - var(--header-h) - 120px);
+  min-height: 560px;
+  overflow: hidden;
+}
+.chat-list {
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.chat-list-head {
+  padding: var(--s-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  border-bottom: 1px solid var(--line);
+}
+.chat-list nav {
+  overflow-y: auto;
+  flex: 1 1 auto;
+}
+.convo {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px var(--s-4);
+  text-decoration: none;
+  color: var(--teal);
+  border-bottom: 1px solid var(--line);
+}
+@media (hover: hover) {
+  .convo:hover {
+    background: var(--mint-tint);
+  }
+}
+.convo.active {
+  background: var(--butter-tint);
+  box-shadow: inset 3px 0 0 var(--teal);
+}
+.convo .preview {
+  font-size: 14px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.convo .preview.unread {
+  color: var(--teal);
+  font-weight: 700;
+}
+
+.thread {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+}
+.thread-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding: 12px var(--s-4);
+  border-bottom: 1px solid var(--line);
+}
+.thread-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: var(--s-5) var(--s-4);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--teal-tint);
+}
+.thread-foot {
+  border-top: 1px solid var(--line);
+  padding: 12px var(--s-4);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.msg {
+  max-width: 74%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.msg.me {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+.msg.them {
+  align-self: flex-start;
+}
+.bubble {
+  border-radius: 14px;
+  padding: 10px 14px;
+  font-size: 16px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.msg.them .bubble {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-bottom-left-radius: 4px;
+}
+.msg.me .bubble {
+  background: var(--teal);
+  color: var(--cream);
+  border-bottom-right-radius: 4px;
+}
+.msg .meta {
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 0 4px;
+}
+.system-msg {
+  align-self: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--cream);
+  border: 1px solid var(--line);
+  padding: 4px 12px;
+  border-radius: 999px;
+  text-align: center;
+}
+.attachment {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: var(--cream);
+  border: 1.5px solid var(--line-strong);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+.attachment .file-icon {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: var(--mint-tint-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.proposal {
+  background: var(--cream);
+  border: 1.5px solid var(--teal);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: min(260px, 100%);
+}
+.typing {
+  align-self: flex-start;
+  display: inline-flex;
+  gap: 4px;
+  padding: 12px 14px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+.typing span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  animation: typing 1s infinite ease-in-out;
+}
+.typing span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.typing span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes typing {
+  0%,
+  60%,
+  100% {
+    opacity: 0.4;
+  }
+  30% {
+    opacity: 1;
+  }
+}
+.composer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.quick-replies {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+}
+.quick-replies .toggle {
+  white-space: nowrap;
+}
+.chat-side {
+  border-left: 1px solid var(--line);
+  padding: var(--s-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+  overflow-y: auto;
+}
+
+.back-link {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .chat {
+    grid-template-columns: 280px minmax(0, 1fr);
+  }
+  .chat-side {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  .chat {
+    grid-template-columns: minmax(0, 1fr);
+    height: calc(100vh - var(--header-h) - var(--tabbar-h) - 48px);
+    min-height: 480px;
+  }
+  .chat.has-thread .chat-list {
+    display: none;
+  }
+  .back-link {
+    display: inline-flex;
+  }
+  .chat:not(.has-thread) .thread {
+    display: none;
+  }
+  .msg {
+    max-width: 88%;
+  }
+}
+
+/* Thread header: the name stays on one line (ellipsis if it must), and on
+   small phones the Schedule button collapses to its icon. */
+.thread-head .who {
+  min-width: 0;
+}
+.thread-head .who a,
+.thread-head .who .tiny {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* Use the dynamic viewport height on phones so the browser's own toolbars
+   don't push the composer off-screen. */
+@supports (height: 100dvh) {
+  .chat {
+    height: calc(100dvh - var(--header-h) - 120px);
+  }
+  @media (max-width: 760px) {
+    .chat {
+      height: calc(100dvh - var(--header-h) - var(--tabbar-h) - 56px);
+    }
+  }
+}
+@media (max-width: 480px) {
+  .thread-head .btn .btn-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  .thread-head .btn {
+    padding: 0 10px;
+  }
+  .composer .icon-btn {
+    width: 40px;
+    height: 40px;
+  }
+}
+/* The demo note would sit under the phone tab bar; it is repeated in the
+   footer, on Log in and on About, so it can hide on phones. */
+@media (max-width: 760px) {
+  .chat-note {
+    display: none;
+  }
+}

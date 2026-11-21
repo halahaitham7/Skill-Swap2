@@ -1,0 +1,116 @@
+.swap-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--s-4) var(--s-5);
+  padding: var(--s-5) 0;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+}
+.swap-card .who {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.swap-card .actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  justify-content: flex-end;
+}
+.swap-card blockquote {
+  margin: 0;
+  padding-left: var(--s-3);
+  border-left: 3px solid var(--mint);
+  font-size: 15px;
+}
+
+/* Swap detail */
+.session-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+}
+.day-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+}
+.day-btn {
+  min-height: 62px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--line-strong);
+  background: transparent;
+  color: var(--teal);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 4px 0;
+}
+@media (hover: hover) {
+  .day-btn:hover {
+    border-color: var(--mint);
+  }
+}
+.day-btn[aria-pressed='true'] {
+  background: var(--butter);
+  border-color: var(--teal);
+}
+.day-btn .dow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.day-btn .num {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 800;
+}
+.day-btn .free {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+.day-btn .free.on {
+  background: var(--mint);
+}
+.session-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.session-list li {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) auto;
+  gap: var(--s-3);
+  align-items: center;
+  padding: var(--s-3) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+/* In the narrow sidebar, actions sit on their own line under each session. */
+.side .session-list li {
+  grid-template-columns: 52px minmax(0, 1fr);
+}
+.side .session-list li > :last-child {
+  grid-column: 2 / -1;
+}
+
+@media (max-width: 640px) {
+  .swap-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .swap-card .actions {
+    justify-content: flex-start;
+  }
+  .day-grid {
+    gap: 4px;
+  }
+  .session-list li {
+    grid-template-columns: 52px minmax(0, 1fr);
+  }
+  .session-list li > :last-child {
+    grid-column: 1 / -1;
+  }
+}

@@ -1,0 +1,527 @@
+/* Shared component styles: logo, swap ticket, category art, person row, photo slot. */
+
+/* ---------- Logo ---------- */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--teal);
+}
+.logo-text {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.logo-text span {
+  color: var(--mint);
+}
+
+/* ---------- Swap ticket ---------- */
+.ticket {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 72px minmax(0, 1fr);
+  border: 1.5px solid var(--teal);
+  border-radius: var(--radius);
+  background: var(--cream);
+}
+.ticket-half {
+  padding: var(--s-4) var(--s-5);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.ticket-half.end {
+  align-items: flex-end;
+  text-align: right;
+}
+.ticket-half.ghost {
+  background: var(--teal-tint);
+}
+.ticket-skill {
+  font-family: var(--font-heading);
+  /* Scales with the ticket's own width (container query units), not the
+     viewport, so a long skill like "Photography" always fits its half. */
+  font-size: clamp(18px, 4.6cqi, 30px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  overflow-wrap: break-word;
+}
+.ticket-empty {
+  font-size: 15px;
+  color: var(--text-muted);
+}
+.ticket-person {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+.ticket-half.end .ticket-person {
+  flex-direction: row-reverse;
+}
+.ticket-join {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-left: 1.5px dashed var(--teal);
+  border-right: 1.5px dashed var(--teal);
+  color: var(--teal);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.2;
+  padding: 0 6px;
+}
+.ticket.perfect .ticket-join {
+  background: var(--butter);
+}
+/* Punched notches on the perforation */
+.ticket-join::before,
+.ticket-join::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  margin-left: -9px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 1.5px solid var(--teal);
+}
+.ticket-join::before {
+  top: -10px;
+  clip-path: inset(50% 0 0 0);
+}
+.ticket-join::after {
+  bottom: -10px;
+  clip-path: inset(0 0 50% 0);
+}
+.ticket-reason {
+  grid-column: 1 / -1;
+  border-top: 1.5px solid var(--teal);
+  padding: 12px var(--s-5);
+  font-size: 15px;
+}
+.ticket.compact {
+  grid-template-columns: minmax(0, 1fr) 52px minmax(0, 1fr);
+}
+.ticket.compact .ticket-half {
+  padding: 14px 16px;
+}
+.ticket.compact .ticket-skill {
+  font-size: 20px;
+}
+.ticket.compact .ticket-reason {
+  padding: 10px 16px;
+  font-size: 14px;
+}
+/* The ticket stacks whenever its own box is narrow, wherever it is placed. */
+.ticket-host {
+  container-type: inline-size;
+  min-width: 0;
+}
+@container (max-width: 470px) {
+  .ticket,
+  .ticket.compact {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ticket-half.end {
+    align-items: flex-start;
+    text-align: left;
+  }
+  .ticket-half.end .ticket-person {
+    flex-direction: row;
+  }
+  .ticket-join {
+    flex-direction: row;
+    border-left: 0;
+    border-right: 0;
+    border-top: 1.5px dashed var(--teal);
+    border-bottom: 1.5px dashed var(--teal);
+    padding: 8px;
+  }
+  .ticket-join::before,
+  .ticket-join::after {
+    display: none;
+  }
+}
+
+/* ---------- Category art ---------- */
+.category-art {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  color: var(--teal);
+}
+.category-art.tint-mint {
+  background: var(--mint-tint-strong);
+}
+.category-art.tint-butter {
+  background: var(--butter-tint);
+}
+.ca-corner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 0 solid var(--teal);
+}
+.ca-corner.tl {
+  left: 18px;
+  top: 18px;
+  border-width: 3px 0 0 3px;
+}
+.ca-corner.tr {
+  right: 18px;
+  top: 18px;
+  border-width: 3px 3px 0 0;
+}
+.ca-corner.bl {
+  left: 18px;
+  bottom: 18px;
+  border-width: 0 0 3px 3px;
+}
+.ca-corner.br {
+  right: 18px;
+  bottom: 18px;
+  border-width: 0 3px 3px 0;
+}
+.ca-aperture {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  border: 3px solid var(--teal);
+  border-radius: 50%;
+}
+.ca-caption {
+  position: absolute;
+  left: 48px;
+  bottom: 24px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.ca-caption.right {
+  left: auto;
+  right: 14px;
+  bottom: 8px;
+}
+.ca-glyphs {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  font-family: var(--font-heading);
+  font-size: 46px;
+  font-weight: 800;
+}
+.ca-glyphs .it {
+  font-style: italic;
+  font-weight: 600;
+}
+.motif-programming {
+  background-image: linear-gradient(rgba(32, 59, 58, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(32, 59, 58, 0.12) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+.ca-code {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: 0 20px;
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  font-size: 15px;
+  font-weight: 600;
+}
+.ca-code i {
+  font-style: normal;
+  opacity: 0.55;
+  margin-right: 6px;
+}
+.ca-cursor {
+  display: inline-block;
+  width: 9px;
+  height: 16px;
+  background: var(--teal);
+  vertical-align: -2px;
+  margin-left: 4px;
+}
+.ca-circle {
+  position: absolute;
+  left: 28px;
+  top: 30px;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 2.5px solid var(--teal);
+}
+.ca-square {
+  position: absolute;
+  left: 78px;
+  top: 56px;
+  width: 62px;
+  height: 62px;
+  border: 2.5px solid var(--teal);
+  background: var(--cream);
+}
+.ca-handle-line {
+  position: absolute;
+  left: 162px;
+  top: 36px;
+  width: 2px;
+  height: 72px;
+  background: var(--teal);
+  transform: rotate(35deg);
+  transform-origin: top;
+}
+.ca-handle {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  border: 2px solid var(--teal);
+}
+.ca-handle.a {
+  left: 156px;
+  top: 30px;
+  background: var(--cream);
+}
+.ca-handle.b {
+  left: 116px;
+  top: 92px;
+  border-radius: 50%;
+  background: var(--teal);
+}
+.ca-staff {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 18px;
+}
+.ca-staff i {
+  height: 2px;
+  background: var(--teal);
+}
+.ca-note {
+  position: absolute;
+  width: 18px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--teal);
+  transform: rotate(-20deg);
+}
+.ca-note.n1 {
+  left: 64px;
+  top: 84px;
+}
+.ca-note.n2 {
+  left: 124px;
+  top: 73px;
+}
+.ca-stem {
+  position: absolute;
+  width: 2px;
+  height: 44px;
+  background: var(--teal);
+}
+.ca-stem.s1 {
+  left: 80px;
+  top: 44px;
+}
+.ca-stem.s2 {
+  left: 140px;
+  top: 33px;
+}
+.ca-beam {
+  position: absolute;
+  left: 80px;
+  top: 33px;
+  width: 62px;
+  height: 7px;
+  background: var(--teal);
+  transform: skewY(-10deg);
+  transform-origin: left top;
+}
+.ca-recipe {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 0 20px;
+}
+.ca-plate {
+  flex: none;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  border: 2.5px solid var(--teal);
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ca-plate span {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1.5px dashed var(--teal);
+}
+.ca-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.ca-bars {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 0 20px 20px;
+}
+.ca-bars i {
+  width: 24px;
+  background: var(--teal);
+}
+.ca-bars i.open {
+  background: var(--cream);
+  border: 2.5px solid var(--teal);
+}
+.ca-bars b {
+  font-family: var(--font-heading);
+  font-size: 34px;
+  font-weight: 800;
+  margin-left: 6px;
+}
+.ca-film {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ca-sprockets {
+  height: 16px;
+  background-color: var(--teal);
+  background-image: repeating-linear-gradient(90deg, transparent 0 8px, var(--cream) 8px 18px, transparent 18px 26px);
+  background-size: 26px 8px;
+  background-repeat: repeat-x;
+  background-position: 0 4px;
+}
+.ca-frames {
+  height: 60px;
+  background: var(--teal);
+  display: flex;
+  gap: 6px;
+  padding: 4px 6px;
+}
+.ca-frames i {
+  flex: 1 1 0;
+  background: var(--cream);
+  opacity: 0.9;
+}
+.ca-frames i:nth-child(2) {
+  background: var(--butter);
+}
+
+/* ---------- Person row ---------- */
+.person-row {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  gap: var(--s-4) var(--s-5);
+  padding: var(--s-5) 0;
+  border-top: 1px solid var(--line);
+  align-items: start;
+}
+.person-row:first-child {
+  border-top: 0;
+}
+.person-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.person-name {
+  text-decoration: none;
+}
+@media (hover: hover) {
+  .person-name:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--mint);
+  }
+}
+.person-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+@media (max-width: 760px) {
+  .person-row {
+    grid-template-columns: 52px minmax(0, 1fr);
+  }
+  .person-avatar .avatar {
+    width: 52px !important;
+    height: 52px !important;
+  }
+  .person-actions {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* ---------- Photo ---------- */
+/* A fixed aspect ratio + object-fit: cover means photos never stretch and
+   always fill their slot, whatever the source size. */
+.photo {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--ratio, 3 / 2);
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--radius);
+  background: var(--teal-tint); /* shown while the image loads */
+}
+.photo-credit {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: right;
+}
+.photo-credit a {
+  color: inherit;
+  text-decoration-color: var(--line-strong);
+}

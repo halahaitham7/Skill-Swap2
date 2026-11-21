@@ -1,0 +1,122 @@
+.next-band {
+  background: var(--mint-tint);
+  border-radius: var(--radius-lg);
+  padding: var(--s-5) var(--s-6);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4) var(--s-6);
+}
+.next-band .stack {
+  gap: 6px;
+  flex: 1 1 360px;
+}
+.match-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  gap: var(--s-6) var(--s-5);
+}
+.match-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.swap-line {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) minmax(140px, 220px) auto;
+  gap: var(--s-4);
+  align-items: center;
+  padding: var(--s-4) 0;
+}
+.side-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.side-block + .side-block {
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+}
+.skill-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 0;
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-3);
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+.stat strong {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 90px;
+  border-bottom: 1px solid var(--line-strong);
+}
+.bars span {
+  flex: 1 1 0;
+  border-radius: 4px 4px 0 0;
+  background: var(--mint-tint-strong);
+  min-height: 3px;
+}
+.bars span.now {
+  background: var(--mint);
+}
+.session-line {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  text-decoration: none;
+  color: var(--teal);
+  padding: 8px 0;
+}
+@media (hover: hover) {
+  .session-line:hover strong {
+    text-decoration: underline;
+    text-decoration-color: var(--mint);
+  }
+}
+.date-chip {
+  border: 1.5px solid var(--teal);
+  border-radius: var(--radius-sm);
+  text-align: center;
+  padding: 4px 0;
+  line-height: 1.1;
+}
+.date-chip small {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.date-chip b {
+  font-family: var(--font-heading);
+  font-size: 20px;
+}
+
+@media (max-width: 760px) {
+  .swap-line {
+    grid-template-columns: 44px minmax(0, 1fr);
+  }
+  .swap-line > :nth-child(3),
+  .swap-line > :nth-child(4) {
+    grid-column: 1 / -1;
+  }
+  .next-band {
+    padding: var(--s-4);
+  }
+}
